@@ -139,4 +139,74 @@ Convert the code below in such way that the output should be the one below
 console.log('First Call');
 [1, 2, 3, 4, 5].forEach((num) => console.log(num));
 console.log('Last Call');
+
+function sayHello() {
+  console.log('Hey You Called Me');
+}
+setTimeout(sayHello, 1000);
+
+console.log('Hey You!');
+// Hey You!
+// Hey You Called Me
+
+
+2.
+
+function sayHello() {
+  console.log('Hey You Called Me');
+}
+
+setTimeout(sayHello, 0);
+
+console.log('Hey You!');
+// Hey You!
+// Hey You Called Me
+3.
+
+function main() {
+  console.log('A');
+  setTimeout(function display() {
+    console.log('B');
+  }, 0);
+  console.log('C');
+}
+main();
+4.
+
+function runWhileLoopForNSeconds(sec) {
+  let start = Date.now(),
+    now = start;
+  while (now - start < sec * 1000) {
+    now = Date.now();
+  }
+}
+function main() {
+  console.log('A');
+  setTimeout(function exec() {
+    console.log('B');
+  }, 0);
+  runWhileLoopForNSeconds(3);
+  console.log('C');
+}
+// output
+
+Look at the output of the code below to understand how code is executing
+function runWhileLoopForNSeconds(sec) {
+  let start = Date.now(),
+    now = start;
+  while (now - start < sec * 1000) {
+    now = Date.now();
+  }
+}
+function main() {
+  var current = Date.now();
+  console.log('A', Date.now() - current);
+  setTimeout(function exec() {
+    console.log('B', Date.now() - current);
+  }, 1000);
+  runWhileLoopForNSeconds(3);
+  console.log('C', Date.now() - current);
+}
+
+main();
 ```
