@@ -1,11 +1,10 @@
 // 1. Create a promise. Have it resolve with a value of `Promise Resolved!` in resolve after a delay of 1000ms, using `setTimeout`. Print the contents of the promise after it has been resolved by passing `console.log` to `.then`
 
 // ```js
-let print = new Promise((resolve,reject) => {
-    setTimeout(resolve("Promiss Resolved!"),1000)
-});
-
-print.then((value) => console.log(value));
+new Promise((resolve,reject) => {
+    setTimeout(() => resolve( "Promiss Resolved!"),1000)
+}) 
+.then((console.log));
 
 // ```
 
@@ -15,7 +14,7 @@ print.then((value) => console.log(value));
 let reject = new Promise((resolve,reject) => {
     reject("Rejected Promise!")
 });
-reject.catch((value) => console.log(value));
+reject.catch(console.log);
 
 // ```
 
@@ -25,7 +24,7 @@ reject.catch((value) => console.log(value));
 let fullfilled = new Promise((resolve,reject) => {
     reject("Rejected Promise!")
 });
-fullfilled.catch((value) => console.log(value)).finally(() => console.log("Promise Settled!"));
+fullfilled.catch((console.log)).finally(() => console.log("Promise Settled!"));
 // ```
 
 
@@ -53,7 +52,7 @@ console.log('D');
 // ```js
 function wait(time){
     return new Promise((resolve,rejected) => {
-        setTimeout(resolve(`Promiss resolved after ${time / 1000} second`),time);
+        setTimeout(() => resolve(`Promiss resolved after ${time / 1000} second`),time);
     })
     
 };
@@ -69,6 +68,23 @@ function wait(time){
 // - Catch the error using `.catch`
 
 // ```js
+new Promise((res,rej) => {
+    res(21);
+})
+.then((value) => {
+    console.log(value);
+    return value + 10;
+})
+.then((value) => {
+    console.log(value);
+    return value + 100;
+})
+.then((value) => {
+    console.log(value);
+    if(value > 100){
+        throw new Error("Something went wrong!")
+    }
+}).catch(console.log);
 
 // ```
 
@@ -154,15 +170,13 @@ new Promise((res,rej) => {
     res("John")
 })
 .then(() => {
-    return new Promise((res,rej) => {
-        res("Arya")
-    })
+    return Promise.resolve("Arya")
 })
 .then((val) => {
     console.log(val);
     return new Promise((res,rej) => {
-        setTimeout(res("Bran"),2000);
+        setTimeout(() => res("Bran"),2000);
     })
 })
-.then(val => console.log(val));
+.then(console.log);
 // ```
