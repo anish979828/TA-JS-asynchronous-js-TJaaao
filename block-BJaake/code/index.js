@@ -19,7 +19,7 @@ fetch("https://api.spaceflightnewsapi.net/v3/articles?_limit=80")
     }
 }).catch(val => {
     root.innerText = val;
-})
+});
 
 // Ui function 
 function creatUi(data){
