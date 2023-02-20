@@ -1,11 +1,18 @@
 // - Create four promises that resolve after 1, 2, 3 and 4 seconds with a random value. Using `Promise.all` log the value of each promise that it resolved with it.
 
-let first = Promise.resolve("Hey");
-let second = Promise.resolve("Anish!");
-let third = Promise.resolve("How are u?");
-let fourth = Promise.resolve("All good!");
+// let first = Promise.resolve("Hey");
+// let second = Promise.resolve("Anish!");
+// let third = Promise.resolve("How are u?");
+// let fourth = Promise.resolve("All good!");
 
-Promise.all([first,second,third,fourth]).then(val => val.forEach(val => console.log(val)));
+// Promise.all([first,second,third,fourth]).then(val => val.forEach(val => console.log(val)));
+
+let time = [1,2,3,4];
+time.map(second => {
+    new Promise((res,rej) => {
+        setTimeout(() => res())
+    })
+})
 
 // - Create a list of 5 Github usernames in an array and using `Promise.all` get access to the data of each user from GitHub API. Log the number of followers of each user.
 let username = ["anish979828","aditya2z","prank7","ritesh22201"];
