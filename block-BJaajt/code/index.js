@@ -1,6 +1,6 @@
 let user =  document.querySelector(".userimg");
 let h2 = document.querySelector("h2");
-let span = document.querySelector("span");
+let span = document.querySelector("a");
 let followers = document.querySelector(".followers ul");
 let following = document.querySelector(".following ul");
 let input = document.querySelector("input");
@@ -17,7 +17,7 @@ function fetch(url,uiFunction,root){
     };
     input.value = "";
     xhr.send();
-}
+};
 
 // event on input 
 input.addEventListener("keyup",(event)=> {
@@ -32,6 +32,7 @@ function createUi(data){
     user.src = data.avatar_url;
     h2.innerText = data.name;
     span.innerText = `@${data.login}`;
+    span.href= data.html_url;
     fetch(data.followers_url,picture,followers);
     fetch(data.following_url.replace("{/other_user}",""),picture,following);
 };
@@ -39,7 +40,6 @@ function createUi(data){
 // uifollower 
 function picture(data,root){
     root.innerHTML = "";
-    console.log(data.following_url);
     for(let i = 0; i < 5; i++){
         let li = document.createElement("li");
         let img = document.createElement("img");
@@ -62,5 +62,5 @@ catButton.addEventListener("click",() => {
     fetch("https://api.thecatapi.com/v1/images/search?limit=1&size=full",(data) => {
         catImg.src = data[0].url;
     } )
-})
+});
 
