@@ -2,17 +2,27 @@ let input = document.querySelector("select");
 let root = document.querySelector("ul");
 let allNews;
 
+function load(status = false){
+    if(status){
+        root.innerHTML = '<div class="spinner"><div class="donut"></div></div>'
+    }
+};
+
 // fething data 
 
-fetch("https://api.spaceflightnewsapi.net/v3/articles?_limit=80")
-.then((val) =>{
-    // if(val.ok){
-    //     return val.json()
-    // }else{
-    //     throw new Error(`Check your internet conection❌`);
-    // };
+
+function fetching(){
+    load(true);
+    fetch("https://api.spaceflightnewsapi.net/v3/articles?_limit=80")
+.then((val) => {
+    if(val.ok){
+        return val.json()
+    }else{
+        throw new Error(`error${val.status} is happened`);
+    };
     return val.json();
 }).then(val => {
+    load()
     // if(Array.isArray(val)){
     //     allNews = val;
     //     showOption(allNews);
@@ -23,8 +33,12 @@ fetch("https://api.spaceflightnewsapi.net/v3/articles?_limit=80")
        creatUi(val);
 
 }).catch(val => {
-    root.innerText = "check yout internate conection❌";
+    root.innerText = "check your internet conection❌";
 });
+    
+}
+fetching();
+
 
 // Ui function 
 function creatUi(data){
