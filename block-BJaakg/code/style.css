@@ -1,0 +1,121 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* custom style  */
+body{
+    font-family:cursive;
+    background: radial-gradient(rgba(170, 117, 117, 0.5),rgba(180, 198, 13, 0.5));
+}
+main{
+    width: 60%;
+    margin: 0 auto;
+}
+ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+li{
+    background-color: bisque;
+    border: 2px dashed red;
+    padding: 20px;
+    margin: 10px 10px;
+    width: 200px;
+    line-height: 5;
+    text-align: center;
+    transition: all 2s ease;
+}
+li:hover{
+    cursor: pointer;
+    transform: scale(1.2 ,1.2);
+
+}
+li h2 {
+    font-weight: bold;
+    color: blueviolet;
+}
+li button{
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+}
+header{
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background: linear-gradient(rgba(36, 158, 53, 0.795),rgba(22, 109, 196, 0.5));
+}
+div{
+    display: flex;
+}
+@keyframes donut-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+.donut {
+    display: inline-block;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #7983ff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: donut-spin 1.2s linear infinite;
+}
+.spinner{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
