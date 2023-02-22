@@ -59,6 +59,7 @@ main{
 ul{
     display: flex;
     flex-wrap: wrap;
+    /* position: absolute; */
 }
 li{
     background-color: bisque;
@@ -92,7 +93,10 @@ header{
     background: linear-gradient(rgba(36, 158, 53, 0.795),rgba(22, 109, 196, 0.5));
 }
 div{
+    padding: 10px;
     display: flex;
+    font-size: 40px;
+    justify-content: space-between;
 }
 @keyframes donut-spin {
     0% {
@@ -106,7 +110,7 @@ div{
 .donut {
     display: inline-block;
     border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left-color: #7983ff;
+    border-left-color:red;
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -118,4 +122,29 @@ div{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.show{
+    display: none;
+};
+.add{
+    display: block;
+}
+.popup{
+    margin-top: 20px;
+    background-color: darkcyan;
+    display: none;
+}
+span:hover{
+    cursor: pointer;
+}
+button.hover{
+    cursor: pointer;
+}
+.box{
+    color: white;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 24px;
+    border: 1px solid black;
+    line-height: 2;
 }

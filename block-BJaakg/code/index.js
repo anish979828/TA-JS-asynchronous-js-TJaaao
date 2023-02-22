@@ -1,29 +1,31 @@
 // You will find the collection of GOT books (https://www.anapioficeandfire.com/api/books)
 let root = document.querySelector("ul");
-// let button = document.querySelector("button");
-// let span = document.querySelector("span");
+let article = document.querySelector("article");
+let span = document.querySelector("span");
+let section = document.querySelector("section");
 
-// button.addEventListener("click",() => {
-//     root.style.display = "none";
-// });
-
+span.addEventListener("click", () => {
+    root.classList.toggle("show");
+    section.style.display = "none";
+})
 
 // fething data 
 function fethApi(url){
-    load(true);
-    fetch("https://www.anapioficeandfire.com/api/books")
+    load(root,true);
+    fetch(url)
     .then(val => val.json())
     .then(val => { 
-        load();
         createUi(val);
+    }).finally(() => {
+        load(root);
     })
 }
-fethApi();
+fethApi("https://www.anapioficeandfire.com/api/books");
 
 // loading icon 
-function load(status = false){
+function load(rootElm,status = false){
     if(status){
-        root.innerHTML = `<div class="spinner"><div class="donut"></div></div>`
+        rootElm.innerHTML = `<div class="spinner"><div class="donut"></div></div>`
     }
     
 }
@@ -31,15 +33,49 @@ function load(status = false){
 // creating UI 
 function createUi(data){
     root.innerHTML = "";
-    root.innerHTML = data.map(ele => {
-        return `<li>
-        <h2>${ele.name}</h2>
-        <p>${ele.authors}</p>
-        <button>show characters (${ele.characters.length})</button>
-    </li>`
-    }).join("");
+    data.forEach(el => {
+        let li = document.createElement("li");
+        console.log(data)
+        let h2 = document.createElement("h2");
+        let  p = document.createElement("p");
+        let button = document.createElement("button");
+        h2.innerText = el.name;
+        p.innerText = el.authors;
+        button.innerText = `Show character (${el.characters.length})`;
+        li.append(h2,p,button);
+        root.append(li);
+
+        // event on button 
+        button.addEventListener("click",() => {
+            root.classList.toggle("show");
+            section.style.display = "block";
+            characterUi(el.characters)
+       });
+    })
 };
 
+// UI for characters
+function characterUi(data){
+    Promise.all(data.map(el => {
+        load(article,true)
+        return fetch(el).then(val => val.json())
+    })).then(el => {
+        article.innerHTML = "";
+        el.forEach(el => {
+            let div = document.createElement("div");
+            div.classList.add("box")
+            div.innerText = `${el.name} : (${el.aliases})`
+            article.append(div);
+        }).catch((err) => {
+            article.innerText = err;
+        }).finally(() => {
+            load(article);
+        })
+
+    })
+
+    
+}
 
 
 // - The data will contain `name`, `authors`, `numberOfPages`, `publisher`, `released` and `country`
