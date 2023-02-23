@@ -70,8 +70,13 @@ main{
 }
 li{
     display: flex;
+    align-items: center;
+    justify-content: space-around;
     margin-top: 10px;
 }
 button{
     margin-top: 10px;
+}
+span:hover{
+    cursor: pointer;
 }
